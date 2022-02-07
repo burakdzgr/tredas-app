@@ -19,6 +19,7 @@
       <v-tabs-items v-model="tab">
         <v-tab-item class="bg-transparent">
           <v-card-text>
+            test
             <apex-chart-new-technologies-data></apex-chart-new-technologies-data>
           </v-card-text>
         </v-tab-item>
