@@ -1,11 +1,10 @@
 <!--suppress ALL -->
 <template>
   <v-card class="card-content">
-
-    <v-row>
-      <v-tabs
+    <v-row class="tabs-content">
+      <v-col md="6" cols="12">
+        <v-tabs
         v-model="tab"
-        class="tabs-content"
         vertical
       >
         <v-tab
@@ -16,16 +15,17 @@
           {{ item.name }}
         </v-tab>
       </v-tabs>
-      <v-tabs-items v-model="tab">
+      </v-col>
+     <v-col md="6" cols="12">
+        <v-tabs-items v-model="tab">
         <v-tab-item class="bg-transparent">
           <v-card-text>
-            test
             <apex-chart-new-technologies-data></apex-chart-new-technologies-data>
           </v-card-text>
         </v-tab-item>
       </v-tabs-items>
+     </v-col>
     </v-row>
-
   </v-card>
 </template>
 
@@ -60,6 +60,10 @@ export default {
 }
 </script>
 <style>
+.tabs-content{
+  display:flex;
+  flex-wrap: nowrap !important;
+}
 .theme--light.v-tabs > .v-tabs-bar{
   background:none !important;
 }

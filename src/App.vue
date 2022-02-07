@@ -3,7 +3,9 @@
     <div class="wrapper">
     <Header></Header>
     <v-main class="wrapper-content">
-      <router-view/>
+      <v-container>
+        <router-view/>  
+      </v-container>
     </v-main>
   </div>
   </v-app>
