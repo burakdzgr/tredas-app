@@ -1,8 +1,11 @@
 <!--suppress ALL -->
 <template>
   <v-card class="card-content">
+    <div class="analyz-head">
+      <span>Analiz Listesi</span>
+    </div>
     <v-row class="tabs-content">
-      <v-col md="6" cols="12">
+      <v-col md="5" lg="4" cols="12" class="tab-list">
         <v-tabs
         v-model="tab"
         vertical
@@ -16,7 +19,7 @@
         </v-tab>
       </v-tabs>
       </v-col>
-     <v-col md="6" cols="12">
+     <v-col md="7" lg="8" cols="12" class="tab-charts-content">
         <v-tabs-items v-model="tab">
         <v-tab-item class="bg-transparent">
           <v-card-text>
@@ -91,5 +94,25 @@ export default {
 }
 .v-tabs.v-tabs--vertical .v-tabs-slider-wrapper{
   left: 0 !important;
+}
+.tab-list, .tab-charts-content{
+  background-color: #fff;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+.tab-list{
+  margin: 0 50px 0 0;
+  border-radius: 4px !important;
+}
+.tab-charts-content{
+  border-radius: 4px !important;
+}
+.analyz-head{
+  padding: 0 0 50px 0 !important;
+}
+.analyz-head span{
+  font-size: 20px;
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 0;
 }
 </style>

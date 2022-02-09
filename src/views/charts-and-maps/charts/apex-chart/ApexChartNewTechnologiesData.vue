@@ -1,21 +1,31 @@
-<template>
-  <vue-apex-charts
+<template> 
+<div>
+   <div>
+    <vue-apex-charts
       type="scatter"
       height="400"
       :options="scatterChart.chartOptions"
       :series="scatterChart.series"
   />
+ </div>
+ <div>
+    <ShowModal v-model="dialog" class="modal"></ShowModal>
+ </div>
+</div>
 </template>
 
 <script>
 import VueApexCharts from 'vue-apexcharts'
+import ShowModal from '@/components/ShowModal'
 
 export default {
   components: {
     VueApexCharts,
+    ShowModal
   },
   data() {
     return {
+      ShowModal: true,
       scatterChart: {
         series: [
           {
@@ -72,8 +82,14 @@ export default {
         ],
         chartOptions: {
           chart: {
+            events: {
+              markerClick: function(a, b, c) {
+                console.info(c);
+                alert(c.w.globals.seriesNames[c.seriesIndex])
+              },
+            },
             zoom: {
-              enabled: true,
+              enabled: false,
               type: 'xy',
             },
             toolbar: {
@@ -110,3 +126,8 @@ export default {
   },
 }
 </script>
+<style scoped>
+.modal{
+    display: none !important;
+}
+</style>

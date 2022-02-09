@@ -9,7 +9,10 @@
   },
   "dependencies": {
     "@mdi/js": "^6.5.95",
+    "@vuelidate/core": "^2.0.0-alpha.34",
+    "@vuelidate/validators": "^2.0.0-alpha.26",
     "apexcharts": "^3.33.0",
+    "axios": "^0.25.0",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
     "vue-apexcharts": "^1.6.2",
@@ -44,7 +47,8 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    " rules": {}
+      
   },
   "browserslist": [
     "> 1%",
