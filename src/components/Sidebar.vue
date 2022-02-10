@@ -118,7 +118,7 @@
 <style>
 .sidebar{
     position:fixed;
-    height: 100vh;
+    height: 100%;
     top: 0;
     left: 0;
     bottom: 0;

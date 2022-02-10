@@ -22,6 +22,9 @@ export default {
     Sidebar,
     Header
   },
+  methods: {
+
+  },
   data: () => ({
     //
   }),
@@ -32,6 +35,7 @@ export default {
   display: flex !important;
   flex-direction: row !important;
   background-color: #ecf0f4;
+  height: 100%;
 }
 .wrapper-content{
   padding: 100px 0 0 25px !important;

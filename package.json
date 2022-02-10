@@ -14,8 +14,10 @@
     "apexcharts": "^3.33.0",
     "axios": "^0.25.0",
     "core-js": "^3.6.5",
+    "one": "^6.0.1",
     "vue": "^2.6.11",
     "vue-apexcharts": "^1.6.2",
+    "vue-native-color-picker": "^1.2.0",
     "vue-router": "^3.2.0",
     "vuetify": "^2.4.0",
     "vuex": "^3.4.0"
@@ -48,7 +50,6 @@
       "parser": "babel-eslint"
     },
     " rules": {}
-      
   },
   "browserslist": [
     "> 1%",

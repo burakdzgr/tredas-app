@@ -14,8 +14,7 @@
                         </button>
                         <ul v-if="isHidden" class="user-action-sub">
                             <li>
-                                <span v-if="isLoggedIn"> | <button @click="logout" type="button" class="logout">Logout</button></span>
-                               
+                                <button  type="button" class="logout">Çıkış Yap</button>
                             </li>
                         </ul>
                     </li>
@@ -30,9 +29,6 @@ export default {
         return{
             isHidden: false,
         }
-    },
-    computed: {
-      isLoggedIn: function() { return this.$store.getters.isLoggedIn }
     },
     methods: {
       logout: function() {
