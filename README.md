@@ -1,4 +1,4 @@
-# my-tredas-app-v2
+# ewsai-web-frontend
 
 ## Project setup
 ```
