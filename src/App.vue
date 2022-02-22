@@ -1,43 +1,41 @@
 <template>
   <v-app>
     <div class="wrapper">
-    <Sidebar></Sidebar>
-    <v-main class="wrapper-content">
-      <Header></Header>
-      <v-container>
-        <router-view/>  
-      </v-container>
-    </v-main>
-  </div>
+      <v-main class="wrapper-content">
+        <router-view/>
+
+      </v-main>
+    </div>
   </v-app>
 </template>
 
 <script>
-import Sidebar from '@/components/Sidebar'
-import Header from '@/components/Header'
 
 export default {
   name: 'App',
-  components: {
-    Sidebar,
-    Header
-  },
-  methods: {
 
-  },
   data: () => ({
     //
   }),
 };
 </script>
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+*{
+  font-family: 'Inter', sans-serif;
+}
 .wrapper{
   display: flex !important;
   flex-direction: row !important;
   background-color: #ecf0f4;
   height: 100%;
+  border-radius: 30px 0 0 30px;
 }
 .wrapper-content{
-  padding: 100px 0 0 25px !important;
+  position: relative;
+}
+.v-main__wrap{
+  position: inherit !important;
 }
 </style>

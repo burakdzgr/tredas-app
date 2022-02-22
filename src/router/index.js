@@ -1,72 +1,67 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 import store from '../store/index.js'
 import Login from '../components/LoginAuth.vue'
-import Secure from '../components/Secure.vue'
-import Register from '../components/RegisterAuth.vue'
+import Dashboard from '../components/Dashboard.vue'
+import AnalyzPage from '../components/AnalyzPage'
+
 
 Vue.use(VueRouter)
 
-const routes = [
+const routes =  [
+  { path: '/', component: Dashboard },
   {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-
-  {
-    path: '/analizler',
-    name: 'Analizler',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "analizler" */ '../views/Analyz.vue')
-  },
-  {
-    path: '/nesne-tutleri',
-    name: 'Nesne Türleri',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "nesne-turleri" */ '../views/ObjectTypes.vue')
-  },
-  {
-    path: '/kullanici-listesi',
-    name: 'Kullanıcı Listesi',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "kullanici-yonetimi" */ '../views/UserManagement.vue')
-  },
-  {
-    path: '/kullanici-ekle',
-    name: 'Kullanıcı Ekle',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "user-add" */ '../views/UserAdd.vue')
+    path: '/dashboard',
+    name: 'dashboard',
+    component: Dashboard,
+    children: [
+      {
+        path: '/analizler',
+        component: AnalyzPage,
+      },
+      {
+        path: '/nesne-turleri',
+        name: 'Nesne Türleri',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackCh chunkName: "nesne-turleri" */ '../views/ObjectTypes.vue'),
+        meta: { 
+          auth: true,
+        }
+      },
+      
+      {
+        path: '/kullanici-listesi',
+        name: 'Kullanıcı Listesi',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "kullanici-yonetimi" */ '../views/UserManagement.vue'),
+        meta: { 
+          auth: true,
+        }
+      },
+      {
+        path: '/kullanici-ekle',
+        name: 'Kullanıcı Ekle',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "user-add" */ '../views/UserAdd.vue'),
+        meta: { 
+          auth: true,
+        }
+      },
+    ]
   },
   {
     path: '/login',
-    name: 'login',
+    name: 'Login',
     component: Login
   },
-  {
-    path: '/register',
-    name: 'register',
-    component: Register
-  },
-  {
-    path: '/secure',
-    name: 'secure',
-    component: Secure,
-    meta: {
-      requiresAuth: true
-    }
-  },
+  
 ]
-
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,

@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="color-picker-content">
     <v-row>
       <v-col
       cols="12"
@@ -14,7 +14,6 @@
       </ul>
     </div>
     </v-col>
-
     <v-col
       cols="12"
       md="6"
@@ -26,26 +25,67 @@
       </h1>
       <div class="form-group">
         <div class="form-element">
-          <label for="name">Adınız</label>
+          <label for="name">Nesne Adını Girin</label>
           <input type="text" name="name" autocomplete="given.name" class="required">
         </div>
-        <div class="color-picker">
-          
+        <div class="form-element">
+          <div class="color-picker">
+          <div class="form__field">
+            <div class="form__label">
+              <strong>Lütfen nesneye ait renk seçin:</strong>
+            </div>
+            <div class="form__input">
+              <swatches v-model="color" colors="text-advanced" popover-to="left"></swatches>
+            </div>
+          </div>
+        </div>
         </div>
         <div class="action">
-          <a href="#bitir" role="menuItem"> Onayla ve Bitir</a>
+          <a href="#bitir" role="menuItem" @click="save"> Nesne Ekle</a>
         </div>
       </div>
     </div>
     </v-col>
-
+    </v-row>
+    <v-row>
+      <v-col cols="12">
+        <ObjectList></ObjectList>
+      </v-col>
     </v-row>
   </v-card>
 </template>
-
+<script>
+import Swatches from 'vue-swatches'
+import ObjectList from "@/components/ObjectList";
+ export default {
+    components: {ObjectList, Swatches }, // window.VueSwatches.default - from CDN
+    data () {
+      return {
+        color: '#1CA085'
+      }
+    },
+    methods: {
+      save () {
+        if (this.editedIndex > -1) {
+          Object.assign(this.desserts[this.editedIndex], this.editedItem)
+        } else {
+          this.desserts.push(this.editedItem)
+        }
+        this.close()
+      },
+    }
+  }
+</script>
 <style scoped>
+.color-picker-content{
+  margin: 152px 0 0;
+}
 .object-sidebar{
   padding: 40px 30px;
+}
+.vue-swatches__container:not(.vue-swatches--inline)>.vue-swatches__wrapper{
+  display: flex !important;
+  flex-wrap: wrap !important;
 }
 .object-sidebar ul li{
   padding: 20px 0 20px 42px;
@@ -85,6 +125,9 @@
   border-left: 1px solid #D5D9E1;
 
 }
+.object-content{
+  padding: 45px 0;
+}
 .object-content-head{
   margin: 0 0 30px;
   color: #121925;
@@ -96,7 +139,7 @@
 }
 .form-element{
   position: relative;
-  padding: 15px;
+  padding: 15px 50px 15px 15px;
   width: 100%;
 }
 .form-element label:first-child{
@@ -121,13 +164,13 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding:11px 20px;
+  padding:11px 50px;
 
 }
 .action a{
   color: #fff !important;
   outline: none;
-  display: block;
+  padding: 13px 20px;
   font-size: .9em;
   font-weight: 700;
   border-radius: 4px;
@@ -135,5 +178,13 @@
   display: inline-block !important;
   width: auto;
   text-align: end;
+  text-decoration: none;
+}
+.vue-swatches__wrapper{
+  display: flex !important;
+  flex-wrap: wrap !important;
+}
+.form-label{
+  margin: 0 0 10px 0 !important;
 }
 </style>

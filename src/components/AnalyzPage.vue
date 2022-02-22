@@ -1,35 +1,40 @@
 <!--suppress ALL -->
 <template>
-  <v-card class="card-content">
-    <div class="analyz-head">
-      <span>Analiz Listesi</span>
-    </div>
-    <v-row class="tabs-content">
-      <v-col md="5" lg="4" cols="12" class="tab-list">
-        <v-tabs
-        v-model="tab"
-        vertical
-      >
-        <v-tab
-          v-for="(item, i) in AnalyzFilter"
-          :key="i"
-          class="analyz-filter-tab-menu-item"
-        >
-          {{ item.name }}
-        </v-tab>
-      </v-tabs>
-      </v-col>
-     <v-col md="7" lg="8" cols="12" class="tab-charts-content">
-        <v-tabs-items v-model="tab">
-        <v-tab-item class="bg-transparent">
-          <v-card-text>
-            <apex-chart-new-technologies-data></apex-chart-new-technologies-data>
-          </v-card-text>
-        </v-tab-item>
-      </v-tabs-items>
-     </v-col>
-    </v-row>
+ <div class="analiz-content">
+   <v-card class="card-content">
+    <v-container>
+      <div class="analyz-head">
+        <span>Analiz Listesi</span>
+      </div>
+      <v-row class="tabs-content">
+        <v-col md="5" lg="4" cols="12" class="tab-list">
+          <v-tabs
+              v-model="tab"
+              vertical
+          >
+            <v-tab
+                v-for="(item, i) in AnalyzFilter"
+                :key="i"
+                class="analyz-filter-tab-menu-item"
+            >
+              {{ item.name }}
+            </v-tab>
+          </v-tabs>
+        </v-col>
+        <v-col md="7" lg="8" cols="12" class="tab-charts-content">
+          <v-tabs-items v-model="tab">
+            <v-tab-item class="bg-transparent">
+              <v-card-text>
+                <apex-chart-new-technologies-data></apex-chart-new-technologies-data>
+              </v-card-text>
+            </v-tab-item>
+          </v-tabs-items>
+        </v-col>
+      </v-row>
+    </v-container>
   </v-card>
+  <router-view></router-view>
+ </div>
 </template>
 
 <script>
@@ -73,6 +78,7 @@ export default {
 .card-content{
   background: none !important;
   box-shadow: none !important;
+  padding: 100px 0 0 0;
 }
 .analyz-filter-tab-menu-item{
   width: 100% !important;

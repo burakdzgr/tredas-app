@@ -1,5 +1,7 @@
 <template>
-  <AnalyzPage></AnalyzPage>
+  <div>
+    <AnalyzPage></AnalyzPage>
+  </div>
 </template>
 
 <script>

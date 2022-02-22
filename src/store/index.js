@@ -5,6 +5,7 @@ import axios from 'axios'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+  Analyz: null,
   state: {
     status: '',
     token: localStorage.getItem('token') || '',
@@ -43,7 +44,7 @@ export default new Vuex.Store({
           localStorage.setItem('token', token)
           axios.defaults.headers.common['Authorization'] = token
           commit('auth_success', { token: token, user: user })
-          resolve(resp)
+          this.$router.push("/dashboard")
         })
         .catch(err => {
           commit('auth_error')
@@ -72,14 +73,6 @@ export default new Vuex.Store({
         })
       })
     },
-    logout({commit}) {
-      return new Promise((resolve, reject) => {
-        commit('logout')
-        localStorage.removeItem('token')
-        delete axios.defaults.headers.common['Authorization']
-        resolve()
-      })
-    }
   },
   modules: {
 

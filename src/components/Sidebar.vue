@@ -1,101 +1,91 @@
 <template>
   <v-card
     class="sidebar"
-    :class="radius"
     width="300px"
-    elevation="12"
-    
+
   >
-    <v-navigation-drawer
-    >
+    <v-navigation-drawer class="sidebar-bg">
     <div class="sidebar-logo">
-        <router-link to="/">
+        <router-link to="/dashboard">
           <img src="@/assets/logo/tredas-logo.png" alt="">
         </router-link>
     </div>
-     <ul class="sidebar-menu">
-        <li link class="sidebar-menu-item">
+      <div class="sidebar-menu">
+        <ul>
+          <li link class="sidebar-menu-item">
             <div>
               <v-dialog
-                  v-model="dialog"
                   width="500"
-                >
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-btn
-                      color="red lighten-2"
-                      dark
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                      class="job-start-btn"
                       v-bind="attrs"
                       v-on="on"
-                    >
-                      Analiz Başlat
-                    </v-btn>
-                  </template>
+                  >
+                    Analiz Başlat
+                  </v-btn>
+                </template>
 
-                  <v-card>
-                    <v-card-title class="text-h5 grey lighten-2">
-                      İş Adı Girin
-                    </v-card-title>
+                <v-card>
+                  <v-card-title class="text-h5 grey lighten-2">
+                    İş Adı Girin
+                  </v-card-title>
 
-                    <v-text-field
+                  <v-text-field
                       label="İş tanımı"
                       :rules="rules"
                       hide-details="auto"
                       class="job-input"
-                    >
-                    </v-text-field>
+                  >
+                  </v-text-field>
 
-                    <v-divider></v-divider>
+                  <v-divider></v-divider>
 
-                    <v-card-actions>
-                      <v-spacer></v-spacer>
-                      <v-btn
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                        class="job-btn"
                         color="primary"
                         text
-                        @click="dialog = false"
-                      >
-                        İş Başlat
-                      </v-btn>
-                    </v-card-actions>
-                  </v-card>
-                </v-dialog>
+                    >
+                      İş Başlat
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
             </div>
-        </li>
-        <li>
-          <router-link to="analizler">
-            Analizler
-          </router-link>
-        </li>
-        <li>
-          <router-link to="nesne-turleri">
-            Nesne Türleri
-          </router-link>
-        </li>
-        <li>
-          <button class="submenu-link" v-on:click="isHidden = !isHidden">
-            Kullanıcı Yönetimi
-            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </button>
-          <ul v-if="isHidden" class="sidebar-submenu">
+          </li>
+          <li>
+            <router-link to="analizler" class="sidebar-nav-link">
+              Analizler
+            </router-link>
+          </li>
+          <li>
+            <router-link to="nesne-turleri" class="sidebar-nav-link">
+              Nesne Türleri
+            </router-link>
+          </li>
+          <li>
+            <button class="submenu-link sidebar-nav-link" v-on:click="isHidden = !isHidden" >
+              Kullanıcı Yönetimi
+              <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <ul v-if="isHidden" class="sidebar-submenu">
               <li>
-                <router-link to="kullanici-listesi" class="sidebar-submenu-item">
+                <router-link to="kullanici-listesi" class="sidebar-nav-link">
                   Kullanıcı Listesi
                 </router-link>
               </li>
               <li>
-                <router-link to="kullanici-ekle" class="sidebar-submenu-item">
+                <router-link to="kullanici-ekle" class="sidebar-nav-link">
                   Kullanıcı Ekle
                 </router-link>
               </li>
             </ul>
-        </li>
-     </ul>
-      <template v-slot:append>
-        <div class="pa-2">
-          <v-btn block>
-            Logout
-          </v-btn>
-        </div>
-      </template>
+          </li>
+        </ul>
+      </div>
     </v-navigation-drawer>
   </v-card>
 </template>
@@ -117,15 +107,17 @@
 </script>
 <style>
 .sidebar{
-    position:fixed;
-    height: 100%;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    background-color: #fff !important;
-    z-index: 50;
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1) !important;
-
+  position: absolute;
+  padding: 0 30px 0 0;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100%;
+  overflow-y: hidden;
+  background: #121925 !important;
+}
+.sidebar-bg{
+  background-color: #121925 !important;
 }
 .sidebar-logo{
   height: 100px;
@@ -137,13 +129,10 @@
   padding: 0 !important;
 
 }
-.sidebar-logo a:hover{
-  background-color: #fff !important;
-}
 .sidebar-logo img{
   width: 100%;
-  height: 75px;
   object-fit: contain;
+  padding: 60px 40px 40px;
 }
 .sidebar-menu-item{
   list-style: none;
@@ -162,49 +151,68 @@
 .header-item-link:hover {
   background-color: #eee;
 }
+.job-start-btn{
+  padding: 13px 20px !important;
+  width: 100%;
+  display: block;
+  background-color: #0f5ef7 !important;
+  color: #fff !important;
+  justify-content: flex-start !important;
+  text-transform: inherit !important;
+  -webkit-border-radius: 8px !important;
+  -moz-border-radius: 8px !important;
+  -ms-border-radius: 8px !important;
+  -o-border-radius: 8px !important;
+  border-radius: 8px !important;
+  font-weight: 500;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  height: auto !important;
+}
 .job-input{
   padding: 0 20px;
 }
 .sidebar-menu {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  width: 100%;
-  padding: 20px;
+  padding: 20px 20px 17px;
+  height: 681px;
+  overflow-y: auto;
+}
+.sidebar-menu ul{
+  margin:  20px 0 0;
+  padding: 0 !important;
 }
 .sidebar-menu li{
-  padding: 10px 0 !important;
+  padding: 3px 0;
   list-style: none;
   width: 100%;
 }
-.v-application a, .submenu-link{
-  width: 100%;
-  text-decoration: none;
-  font-weight: 500;
-  letter-spacing: 0.0892857143em;
-  color: #161616 !important;
-  background-color: #fff;
-  padding: 10px 15px;
+.sidebar-nav-link{
   display: block;
-  text-align: left;
+  padding: 13px 20px;
+  color: #607192 !important;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  border-radius: 8px;
+  font-size: 1em;
+  font-weight: 500;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   text-decoration: none;
-  text-indent: 0.0892857143em;
-  text-transform: uppercase;
-  transition-duration: 0.28s;
-  transition-property: box-shadow, transform, opacity;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  vertical-align: middle;
-  white-space: nowrap;
-  border-radius: 4px;
-
+  width: 100%;
+  text-align: left;
 }
-.v-application a:hover, .submenu-link:hover{
-  background-color: #87c9e8;
+.sidebar-nav-link:hover{
   color: #fff !important;
+  background: #0f5ef7;
 }
 .sidebar-submenu{
   margin: 10px 0 0;
